@@ -119,7 +119,8 @@ module SES
     # scripts are stored in the internal hash with the `:name` key, code is
     # decompressed and stored with the `:code` key.
     @scripts = load_data('Data/Scripts.rvdata2').map! do |script|
-      {:name => script[1], :code => Zlib::Inflate.inflate(script.last)}
+      { :name => script[1],
+        :code => Zlib::Inflate.inflate(script.last).force_encoding("utf-8")}
     end
     
     # Locates scripts containing the given name and returns an array of full
