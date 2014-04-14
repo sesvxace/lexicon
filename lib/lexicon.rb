@@ -112,7 +112,7 @@ module SES
     end
     
     # Instantiate the Pager for the Lexicon. Used by the `Lexicon.page` method.
-    @pager = Pager.new
+    @pager = Pager.new('', @pager_lines)
     
     # Load all installed script data and organize it. Scripts maintain their
     # numerical index based on their placement in the Script Editor. Names of
