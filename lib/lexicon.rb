@@ -1,5 +1,5 @@
 #--
-# Lexicon v1.0 by Solistra
+# Lexicon v1.1 by Solistra
 # =============================================================================
 # 
 # Summary
@@ -12,7 +12,55 @@
 # 
 # Usage
 # -----------------------------------------------------------------------------
-#   TODO: Write this.
+#   This script is designed to function entirely through a REPL or script
+# calls (although the latter is not recommended). As such, all of the available
+# functionality of this script is available through simple methods. This script
+# also organizes RGSS3 script information primarily by "file" name -- that is,
+# the name of the script as defined in the RMVX Ace Script Editor.
+# 
+#   In order to browse the source code of a script, simply use the provided
+# `SES::Lexicon.browse` method with the file name of the script you wish to
+# view. Example:
+# 
+#     SES::Lexicon.browse('Game_Interpreter')
+# 
+#   This method opens the given script in the pager, allowing paginated
+# browsing of the script's source code. Without pagination, it's very likely
+# that a significant portion of the script may be swallowed by the console's
+# buffer (especially when viewing large scripts such as Game_Interpreter).
+# 
+#   If you need to view a specific line or chunk of source code, you can use
+# the `SES::Lexicon.line` method. The usage of this method involves providing
+# the script name, line number, and (optionally) the number of lines around the
+# requested line number to display as well. For example, if we wanted to view
+# the `update` method of Scene_Base and the 5 lines of code both above and
+# below that method, we would use the following:
+# 
+#     SES::Lexicon.line('Scene_Base', 40, 5)
+# 
+#   There are also two methods provided for information-gathering purposes:
+# `SES::Lexicon.named` and `SES::Lexicon.defining`. As expected, the `named`
+# method returns an array of script names containing the given string or
+# regular expression, and the `defining` method returns an array of scripts
+# which define or redefine the given class or module. Examples:
+# 
+#     SES::Lexicon.named('Manager')  # => ["DataManager", "SceneManager",
+#                                    #     "BattleManager"]
+#     SES::Lexicon.defining('Cache') # => ["Cache"]
+# 
+#   The `defining` method can also take partial class or module names and will
+# return an array of script names which match the partial information given.
+# For example, you can easily view which scripts modify any of the Scene_*
+# classes using `SES::Lexicon.defining('Scene_')`.
+# 
+#   The Lexicon also enables direct reading of the script information that it
+# stores. This information is provided as a reader method for the Lexicon's
+# `@scripts` instance variable. The format of this array stores information as
+# a hash -- each hash includes the `:name` and `:code` keys which provide the
+# expected information when accessed. For example, if you want to simply print
+# the contents of Main to the console, you could use the following:
+# 
+#     puts SES::Lexicon.scripts[-2][:code]
 # 
 # License
 # -----------------------------------------------------------------------------
@@ -120,7 +168,7 @@ module SES
     # decompressed and stored with the `:code` key.
     @scripts = load_data('Data/Scripts.rvdata2').map! do |script|
       { :name => script[1],
-        :code => Zlib::Inflate.inflate(script.last).force_encoding("utf-8")}
+        :code => Zlib::Inflate.inflate(script.last).force_encoding("utf-8") }
     end
     
     # Locates scripts containing the given name and returns an array of full
@@ -137,6 +185,7 @@ module SES
     # module definitions, but it works more than well enough for the default
     # RMVX Ace scripts as well as most third-party scripts.
     def self.defining(name)
+      name = name.to_s.split('::').last if name.to_s['::']
       @scripts.select do |script|
         ["class #{name}", "module #{name}"].any? do |definition|
           script[:code][definition]
@@ -148,6 +197,7 @@ module SES
     # instance owned by the Lexicon. Returns the return value of the pager
     # (the number of lines written to standard output).
     def self.page(name)
+      name = name.to_s if (name.is_a?(Class) || name.is_a?(Module))
       @pager.text = @scripts.select do |script|
         script[:name][name] && !script[:code].strip.empty?
       end.map { |script| script[:code] }.join("\r\n")
@@ -160,8 +210,9 @@ module SES
     # surrounding lines determines how many lines are shown both above and
     # below the target line of code. Returns the number of lines shown.
     def self.chunk(name, line, surround = @surrounding_lines)
-      name, string = name.to_s, ''
-      script = @scripts.select { |s| s[:name] == name }[0][:code].split("\r\n")
+      name   = name.to_s if (name.is_a?(Class) || name.is_a?(Module))
+      string = ''
+      script = @scripts.select { |s| s[:name][name] }[0][:code].split("\r\n")
       start  = [0, line - surround, script.size - surround].sort[1]
       stop   = [surround, line + surround, script.size].sort[1]
       puts (script = script[start..stop]).join("\r\n")
@@ -171,7 +222,7 @@ module SES
     
     # Register this script with the SES Core if it exists.
     if SES.const_defined?(:Register)
-      Description = Script.new(:Lexicon, 1.0)
+      Description = Script.new(:Lexicon, 1.1)
       Register.enter(Description)
     end
   end
