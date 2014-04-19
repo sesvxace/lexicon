@@ -1,5 +1,5 @@
 #--
-# Lexicon v1.1 by Solistra
+# Lexicon v1.2 by Solistra and Enelvon
 # =============================================================================
 # 
 # Summary
@@ -14,9 +14,7 @@
 # -----------------------------------------------------------------------------
 #   This script is designed to function entirely through a REPL or script
 # calls (although the latter is not recommended). As such, all of the available
-# functionality of this script is available through simple methods. This script
-# also organizes RGSS3 script information primarily by "file" name -- that is,
-# the name of the script as defined in the RMVX Ace Script Editor.
+# functionality of this script is available through simple methods.
 # 
 #   In order to browse the source code of a script, simply use the provided
 # `SES::Lexicon.browse` method with the file name of the script you wish to
@@ -27,13 +25,13 @@
 #   This method opens the given script in the pager, allowing paginated
 # browsing of the script's source code. Without pagination, it's very likely
 # that a significant portion of the script may be swallowed by the console's
-# buffer (especially when viewing large scripts such as Game_Interpreter).
+# buffer (especially when viewing large scripts such as `Game_Interpreter`).
 # 
 #   If you need to view a specific line or chunk of source code, you can use
 # the `SES::Lexicon.line` method. The usage of this method involves providing
 # the script name, line number, and (optionally) the number of lines around the
 # requested line number to display as well. For example, if we wanted to view
-# the `update` method of Scene_Base and the 5 lines of code both above and
+# the `update` method of `Scene_Base` and the 5 lines of code both above and
 # below that method, we would use the following:
 # 
 #     SES::Lexicon.line('Scene_Base', 40, 5)
@@ -55,12 +53,34 @@
 # 
 #   The Lexicon also enables direct reading of the script information that it
 # stores. This information is provided as a reader method for the Lexicon's
-# `@scripts` instance variable. The format of this array stores information as
+# `@scripts` instance variable. The elements of this array store information as
 # a hash -- each hash includes the `:name` and `:code` keys which provide the
 # expected information when accessed. For example, if you want to simply print
-# the contents of Main to the console, you could use the following:
+# the contents of `Main` to the console, you could use the following:
 # 
 #     puts SES::Lexicon.scripts[-2][:code]
+# 
+# Using the Pager
+# -----------------------------------------------------------------------------
+#   The Lexicon's pager paginates large text so that it can be viewed in pages
+# which may be navigated with commands. When using the pager, you will come
+# across a string at the bottom of the paged output with `>>` at the end of it;
+# this indicates that a command is expected.
+# 
+#   By default, giving no command (by simply pressing Enter) will advance the
+# pager to the next page of text; this is exactly the same as giving any of the
+# following commands: `forward`, `next`, or `down`. You may also browse the
+# previous page of text with `back`, `prev`, `previous`, or `up`.
+# 
+#   In addition to this, you can browse a specific number of lines forward or
+# backward in the paginated text by passing a valid integer as the command.
+# Positive integers advance the text forward, negatives show previous lines in
+# the text. You may browse between -9,999 and 9,999 lines at a time; any number
+# above or below these values is not a valid command.
+# 
+#   In order to exit the pager, simply pass any of the following commands: `q`,
+# `quit`, or `exit`. This will cause the pager to immediately terminate and
+# return the position of the pager in the paginated text.
 # 
 # License
 # -----------------------------------------------------------------------------
@@ -85,18 +105,19 @@ module SES
     # BEGIN CONFIGURATION
     # =========================================================================
     # The number of lines to show per page within the Lexicon's pager. This is
-    # set to 23 by default, which fills the default RGSS Console's window with
-    # output from the pager.
+    # set to `23` by default, which fills the default RGSS Console's window
+    # with output from the pager.
     @pager_lines = 23
     
     # The number of lines to surround source code lines queried with the `line`
     # or `chunk` methods of the Lexicon. The number defined here determines the
-    # number of lines shown both above and below the line given. Set this to 0
-    # in order to display *only* the requested line.
+    # number of lines shown both above and below the line given. Set this to
+    # `0` in order to display *only* the requested line.
     @surrounding_lines = 5
     # =========================================================================
     # END CONFIGURATION
     # =========================================================================
+    # Accessor and reader methods for the SES::Lexicon module.
     class << self
       attr_accessor :pager_lines, :surrounding_lines
       attr_reader   :pager,       :scripts
@@ -104,52 +125,88 @@ module SES
     # =========================================================================
     # Pager
     # =========================================================================
-    # Paginates textual input by displaying only `lines` number of lines at a
-    # time until the end of input has been reached.
+    # Paginates textual input by displaying the given number of lines at a time
+    # until the end of input has been reached.
     class Pager
-      attr_accessor :lines
+      # Class accessor method.
+      class << self ; attr_accessor :lines ; end
+      
+      # Class instance variable. Determines the default number of lines per
+      # page for new Pager instances to display. '23' fills the default RGSS3
+      # console's window.
+      @lines = 23
+      
+      # Instance accessor and reader methods.
+      attr_accessor :lines,    :position
       attr_reader   :text
       
       # Initialize a new Pager instance with the given textual input and number
       # of lines to display by default. Textual input is converted into an
       # array separated by the Windows EOL separator.
-      def initialize(string = '', lines = 23)
+      def initialize(string = '', lines = self.class.lines)
         @lines    = lines
-        self.text = string.to_s
+        @position = 0
+        @previous = @position
+        self.text = string
       end
       
       # Writer method for the `@text` instance variable. Performs conversion of
-      # the given string into an array separated by the Windows EOL separator.
-      def text=(string)
-        @text = string.split("\r\n")
+      # the given value into an array separated by the Windows EOL separator.
+      def text=(value)
+        @text = value.to_s.split("\r\n")
       end
       
       # Paginates the `@text` input by displaying only the given number of
-      # lines at a time. User input is required between pages. The pager quits
-      # operation if the user enters either 'q' or 'Q' as input, but continues
-      # pagination otherwise. Returns the number of lines of input that were
-      # browsed.
+      # lines at a time. User input is required between pages. Returns the
+      # number of lines of input that were browsed.
       def page(lines = @lines)
-        # Store the current position of the pager and its maximum position.
-        position, total = 0, @text.size
-        while position < total
-          @text.each_with_index do |line, index|
-            break if position >= total
-            # Only display the line if it is within the limits of the current
-            # position and the given number of lines to display at a time.
-            puts line if index.between?(position, position + lines)
-          end
-          # Store the previous position -- this is used so that we can tell if
-          # there are more pages to display or if the one displayed was the
-          # last.
-          prev_position = position
-          position     += lines + 1
-          (prev_position < total - lines) ? print('-- MORE -- >> ') : break
-          # Quit pagination and break if the user enters 'q' or 'Q' as input.
-          break if gets.chomp!.downcase == 'q'
+        catch :quit do
+          throw :quit if (@position >= @text.size || @position < 0)
+          @previous = @position
+          move_position(lines)
+          display_lines(@lines)
+          (@previous < @text.size - lines) ? instance_exec(&prompt) : break
         end
-        # Return the total lines of text that were viewed through the pager.
-        position > total ? total : position
+        @position > @text.size ? @text.size : (@position > 0 ? @position : 0)
+      end
+      
+      # Displays the lines from `@position` to the given number of lines. Lines
+      # may be positive or negative -- a positive integer displays lines below
+      # the current position, negative displays lines above it. Returns the new
+      # position within the paged text.
+      def display_lines(lines)
+        return (@position = 0) if (@position >= @text.size) || (@position < 0)
+        @text.each_with_index do |line, index|
+          next unless index.between?(*[@position, @position + lines].sort!)
+          puts line
+        end
+      end
+      
+      # Moves the position `lines` number of lines in the source text.
+      def move_position(lines)
+        @position += lines
+      end
+      
+      # Prompts for user input for the pager and executes given commands.
+      # Returns a lambda object representing the code to call based on the
+      # command given. (The returned lambda is run through `instance_exec` in
+      # the Pager#page method.)
+      def prompt(input = nil)
+        print ('-- MORE -- ("q" to quit) >> ')
+        retval = case (input = (i = gets.chomp! ; i.empty? ? 'forward' : i))
+        when /^(?:forward|next|down)$/i     ; -> { page(@lines)}#SES::Lexicon.pager_lines) }
+        when /^(?:back|prev|previous|up)$/i ; -> { page(-@lines)}#SES::Lexicon.pager_lines) }
+        when /^(-?\d{,4})$/                 ; -> { page($1.to_i) }
+        when /^(?:q|quit|exit)/i            ; -> { throw :quit }
+        end
+        retval.nil? ? (puts "Unknown command: #{input}" ; prompt) : retval
+      end
+      
+      # Resets the Pager instance to its default initialization state.
+      def reset
+        self.send(:initialize)
+        yield self if block_given?
+        self
       end
       
       # Provides a descriptive string representing the Pager instance.
@@ -164,11 +221,10 @@ module SES
     
     # Load all installed script data and organize it. Scripts maintain their
     # numerical index based on their placement in the Script Editor. Names of
-    # scripts are stored in the internal hash with the `:name` key, code is
-    # decompressed and stored with the `:code` key.
-    @scripts = load_data('Data/Scripts.rvdata2').map! do |script|
-      { :name => script[1],
-        :code => Zlib::Inflate.inflate(script.last).force_encoding("utf-8") }
+    # scripts are stored in the internal hash with the `:name` key; code is
+    # encoded as UTF-8 and stored with the `:code` key.
+    @scripts = $RGSS_SCRIPTS.map do |script|
+      { :name => script[1], :code => script.last.force_encoding("utf-8") }
     end
     
     # Locates scripts containing the given name and returns an array of full
@@ -177,31 +233,31 @@ module SES
       name = name.to_s if (name.is_a?(Class) || name.is_a?(Module))
       @scripts.select do |script|
         script[:name][name] && !script[:code].strip.empty?
-      end.map { |script| script[:name] }
+      end.map! { |script| script[:name] }
     end
     
     # Returns an array of script names which define the given class or module.
     # Note: this method is fairly stupid and won't catch more exotic class or
     # module definitions, but it works more than well enough for the default
-    # RMVX Ace scripts as well as most third-party scripts.
+    # RMVX Ace scripts (as well as most third-party scripts).
     def self.defining(name)
       name = name.to_s.split('::').last if name.to_s['::']
       @scripts.select do |script|
         ["class #{name}", "module #{name}"].any? do |definition|
           script[:code][definition]
         end
-      end.map { |script| script[:name] }
+      end.map! { |script| script[:name] }
     end
     
     # Paginates code from the script with the given name through the `@pager`
     # instance owned by the Lexicon. Returns the return value of the pager
     # (the number of lines written to standard output).
-    def self.page(name)
+    def self.page(name, line = 0)
       name = name.to_s if (name.is_a?(Class) || name.is_a?(Module))
-      @pager.text = @scripts.select do |script|
+      @pager.reset { |p| p.position = line }.text = @scripts.select do |script|
         script[:name][name] && !script[:code].strip.empty?
       end.map { |script| script[:code] }.join("\r\n")
-      @pager.page(@pager_lines)
+      @pager.page(0)#@pager_lines)
     end
     class << self ; alias :browse :page ; end
     
@@ -222,7 +278,7 @@ module SES
     
     # Register this script with the SES Core if it exists.
     if SES.const_defined?(:Register)
-      Description = Script.new(:Lexicon, 1.1)
+      Description = Script.new(:Lexicon, 1.2)
       Register.enter(Description)
     end
   end

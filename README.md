@@ -1,5 +1,5 @@
 
-Lexicon v1.1 by Solistra
+Lexicon v1.2 by Solistra and Enelvon
 =============================================================================
 
 Summary
@@ -14,9 +14,7 @@ Usage
 -----------------------------------------------------------------------------
   This script is designed to function entirely through a REPL or script
 calls (although the latter is not recommended). As such, all of the available
-functionality of this script is available through simple methods. This script
-also organizes RGSS3 script information primarily by "file" name -- that is,
-the name of the script as defined in the RMVX Ace Script Editor.
+functionality of this script is available through simple methods.
 
   In order to browse the source code of a script, simply use the provided
 `SES::Lexicon.browse` method with the file name of the script you wish to
@@ -27,13 +25,13 @@ view. Example:
   This method opens the given script in the pager, allowing paginated
 browsing of the script's source code. Without pagination, it's very likely
 that a significant portion of the script may be swallowed by the console's
-buffer (especially when viewing large scripts such as Game_Interpreter).
+buffer (especially when viewing large scripts such as `Game_Interpreter`).
 
   If you need to view a specific line or chunk of source code, you can use
 the `SES::Lexicon.line` method. The usage of this method involves providing
 the script name, line number, and (optionally) the number of lines around the
 requested line number to display as well. For example, if we wanted to view
-the `update` method of Scene_Base and the 5 lines of code both above and
+the `update` method of `Scene_Base` and the 5 lines of code both above and
 below that method, we would use the following:
 
     SES::Lexicon.line('Scene_Base', 40, 5)
@@ -55,12 +53,43 @@ classes using `SES::Lexicon.defining('Scene_')`.
 
   The Lexicon also enables direct reading of the script information that it
 stores. This information is provided as a reader method for the Lexicon's
-`@scripts` instance variable. The format of this array stores information as
+`@scripts` instance variable. The elements of this array store information as
 a hash -- each hash includes the `:name` and `:code` keys which provide the
 expected information when accessed. For example, if you want to simply print
-the contents of Main to the console, you could use the following:
+the contents of `Main` to the console, you could use the following:
 
     puts SES::Lexicon.scripts[-2][:code]
+
+Using the Pager
+-----------------------------------------------------------------------------
+  The Lexicon's pager paginates large text so that it can be viewed in pages
+which may be navigated with commands. When using the pager, you will come
+across a string at the bottom of the paged output with `>>` at the end of it;
+this indicates that a command is expected.
+
+  By default, giving no command (by simply pressing Enter) will advance the
+pager to the next page of text; this is exactly the same as giving any of the
+following commands: `forward`, `next`, or `down`. You may also browse the
+previous page of text with `back`, `prev`, `previous`, or `up`.
+
+  In addition to this, you can browse a specific number of lines forward or
+backward in the paginated text by passing a valid integer as the command.
+Positive integers advance the text forward, negatives show previous lines in
+the text. You may browse between -9,999 and 9,999 lines at a time; any number
+above or below these values is not a valid command.
+
+  In order to exit the pager, simply pass any of the following commands: `q`,
+`quit`, or `exit`. This will cause the pager to immediately terminate and
+return the position of the pager in the paginated text.
+
+  **NOTE:** There is a known bug with navigating text. Namely, advancing text
+forward and then backward does not function as expected; subsequent commands
+which move the position backwards then work as intended. The same bug is also
+encountered when switching from moving backwards to moving forwards.
+
+  **This bug will be fixed before the official version 1.2 release. As it is,
+the pager is perfectly usable -- it simply behaves in unexpected ways under
+the described circumstances.**
 
 License
 -----------------------------------------------------------------------------
