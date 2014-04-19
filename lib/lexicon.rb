@@ -69,14 +69,14 @@
 # 
 #   By default, giving no command (by simply pressing Enter) will advance the
 # pager to the next page of text; this is exactly the same as giving any of the
-# following commands: `forward`, `next`, or `down`. You may also browse the
-# previous page of text with `back`, `prev`, `previous`, or `up`.
+# following commands: `>`, `forward`, `next`, or `down`. You may browse the
+# previous page of text with `<`, `back`, `prev`, `previous`, or `up`.
 # 
-#   In addition to this, you can browse a specific number of lines forward or
+#   In addition to this, you can browse a specific number of pages forward or
 # backward in the paginated text by passing a valid integer as the command.
-# Positive integers advance the text forward, negatives show previous lines in
-# the text. You may browse between -9,999 and 9,999 lines at a time; any number
-# above or below these values is not a valid command.
+# Positive integers advance the text forward, negatives show previous pages of
+# the text. You may browse between -99 and 99 pages at a time; any number above
+# or below these values is not a valid command.
 # 
 #   In order to exit the pager, simply pass any of the following commands: `q`,
 # `quit`, or `exit`. This will cause the pager to immediately terminate and
@@ -194,9 +194,9 @@ module SES
       def prompt(input = nil)
         print ('-- MORE -- ("q" to quit) >> ')
         retval = case (input = (i = gets.chomp! ; i.empty? ? 'forward' : i))
-        when /^(?:forward|next|down)$/i     ; -> { page(@lines)}#SES::Lexicon.pager_lines) }
-        when /^(?:back|prev|previous|up)$/i ; -> { page(-@lines)}#SES::Lexicon.pager_lines) }
-        when /^(-?\d{,4})$/                 ; -> { page($1.to_i) }
+        when /^(?:\>|forward|next|down)$/i     ; -> { page(@lines)}
+        when /^(?:\<|back|prev|previous|up)$/i ; -> { page(-@lines)}
+        when /^(-?\d{,2})$/                 ; -> { page(@lines * $1.to_i) }
         when /^(?:q|quit|exit)/i            ; -> { throw :quit }
         end
         retval.nil? ? (puts "Unknown command: #{input}" ; prompt) : retval
@@ -257,7 +257,7 @@ module SES
       @pager.reset { |p| p.position = line }.text = @scripts.select do |script|
         script[:name][name] && !script[:code].strip.empty?
       end.map { |script| script[:code] }.join("\r\n")
-      @pager.page(0)#@pager_lines)
+      @pager.page(0)
     end
     class << self ; alias :browse :page ; end
     
