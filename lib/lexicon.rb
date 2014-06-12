@@ -194,10 +194,10 @@ module SES
       def prompt(input = nil)
         print ('-- MORE -- ("q" to quit) >> ')
         retval = case (input = (i = gets.chomp! ; i.empty? ? 'forward' : i))
-        when /^(?:\>|forward|next|down)$/i     ; -> { page(@lines)}
-        when /^(?:\<|back|prev|previous|up)$/i ; -> { page(-@lines)}
-        when /^(-?\d{,2})$/                 ; -> { page(@lines * $1.to_i) }
-        when /^(?:q|quit|exit)/i            ; -> { throw :quit }
+        when /^(?:\>|forward|next|down)$/i      ; -> { page(@lines)}
+        when /^(?:\<|back|prev|previous|up)$/i  ; -> { page(-@lines)}
+        when /^(-?\d{,2})$/                     ; -> { page(@lines * $1.to_i) }
+        when /^(?:q|quit|exit)/i                ; -> { throw :quit }
         end
         retval.nil? ? (puts "Unknown command: #{input}" ; prompt) : retval
       end
