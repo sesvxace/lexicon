@@ -1,0 +1,3 @@
+--markup markdown
+--title "SES Lexicon Documentation"
+lib/**/*.rb
