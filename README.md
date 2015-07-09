@@ -1,5 +1,5 @@
 
-Lexicon v1.2 by Solistra and Enelvon
+Lexicon v1.3 by Solistra and Enelvon
 =============================================================================
 
 Summary
@@ -51,14 +51,24 @@ return an array of script names which match the partial information given.
 For example, you can easily view which scripts modify any of the Scene_*
 classes using `SES::Lexicon.defining('Scene_')`.
 
+  In addition to this, you can also browse for a specific method definition
+using its signature in standard Ruby notation using `SES::Lexicon.find`. For
+example, you can jump immediately to the definition of the `update` instance
+method of `Scene_Base` or the `return` class method of `SceneManager` like
+so:
+
+    SES::Lexicon.find('Scene_Base#update')
+    SES::Lexicon.find('SceneManager.return')
+
   The Lexicon also enables direct reading of the script information that it
 stores. This information is provided as a reader method for the Lexicon's
 `@scripts` instance variable. The elements of this array store information as
-a hash -- each hash includes the `:name` and `:code` keys which provide the
-expected information when accessed. For example, if you want to simply print
-the contents of `Main` to the console, you could use the following:
+`RGSS_Script` data structures -- each structure includes both the `name` and
+`code` methods which provide the expected information when accessed. For
+example, if you want to simply print the contents of `Main` to the console,
+you could use the following:
 
-    puts SES::Lexicon.scripts[-2][:code]
+    puts SES::Lexicon.scripts[-2].code
 
 Using the Pager
 -----------------------------------------------------------------------------

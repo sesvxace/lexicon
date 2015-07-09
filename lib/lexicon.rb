@@ -1,5 +1,5 @@
 #--
-# Lexicon v1.2 by Solistra and Enelvon
+# Lexicon v1.3 by Solistra and Enelvon
 # =============================================================================
 # 
 # Summary
@@ -371,7 +371,7 @@ module SES
     # Register this script with the SES Core if it exists.
     if SES.const_defined?(:Register)
       # Script metadata.
-      Description = Script.new(:Lexicon, 1.2)
+      Description = Script.new(:Lexicon, 1.3)
       Register.enter(Description)
     end
   end
