@@ -101,8 +101,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<h1 id="label-Pager">Pager</h1>
+    <h1>Pager</h1>
 
 <p>Paginates textual input by displaying the given number of lines at a time
 until the end of input has been reached.</p>
@@ -123,7 +122,7 @@ until the end of input has been reached.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#lines-class_method" title="lines (class method)">+ (FixNum) <strong>lines</strong> </a>
+      <a href="#lines-class_method" title="lines (class method)">+ (Fixnum) <strong>lines</strong> </a>
     
 
     
@@ -140,8 +139,7 @@ until the end of input has been reached.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The number of lines per page for the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span>.</p>
+    <span class="summary_desc"><div class='inline'><p>The number of lines per page for the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span>.</p>
 </div></span>
   
 </li>
@@ -155,7 +153,7 @@ until the end of input has been reached.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#lines-instance_method" title="#lines (instance method)">- (FixNum) <strong>lines</strong> </a>
+      <a href="#lines-instance_method" title="#lines (instance method)">- (Fixnum) <strong>lines</strong> </a>
     
 
     
@@ -172,8 +170,7 @@ until the end of input has been reached.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The number of lines per page.</p>
+    <span class="summary_desc"><div class='inline'><p>The number of lines per page.</p>
 </div></span>
   
 </li>
@@ -182,7 +179,7 @@ until the end of input has been reached.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#position-instance_method" title="#position (instance method)">- (FixNum) <strong>position</strong> </a>
+      <a href="#position-instance_method" title="#position (instance method)">- (Fixnum) <strong>position</strong> </a>
     
 
     
@@ -199,8 +196,7 @@ until the end of input has been reached.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span>&#39;s position in its stored text.</p>
+    <span class="summary_desc"><div class='inline'><p>The <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span>&#39;s position in its stored text.</p>
 </div></span>
   
 </li>
@@ -226,8 +222,7 @@ until the end of input has been reached.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The stored text being paginated.</p>
+    <span class="summary_desc"><div class='inline'><p>The stored text being paginated.</p>
 </div></span>
   
 </li>
@@ -249,7 +244,7 @@ until the end of input has been reached.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#display_lines-instance_method" title="#display_lines (instance method)">- (FixNum) <strong>display_lines</strong>(lines) </a>
+      <a href="#display_lines-instance_method" title="#display_lines (instance method)">- (Fixnum) <strong>display_lines</strong>(lines) </a>
     
 
     
@@ -263,9 +258,7 @@ until the end of input has been reached.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Displays the lines from <code>@position</code> to the given number of
-lines.</p>
+    <span class="summary_desc"><div class='inline'><p>Displays the lines from <code>@position</code> to the given number of lines.</p>
 </div></span>
   
 </li>
@@ -274,7 +267,7 @@ lines.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Pager) <strong>initialize</strong>(string = &#39;&#39;, lines = self.class.lines) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Pager) <strong>initialize</strong>(string = '', lines = self.class.lines) </a>
     
 
     
@@ -290,9 +283,7 @@ lines.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Initialize a new Pager instance with the given textual input and number of
-lines to display by default.</p>
+    <span class="summary_desc"><div class='inline'><p>Initialize a new Pager instance with the given textual input and number of lines to display by default.</p>
 </div></span>
   
 </li>
@@ -301,7 +292,7 @@ lines to display by default.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#move_position-instance_method" title="#move_position (instance method)">- (FixNum) <strong>move_position</strong>(lines) </a>
+      <a href="#page-instance_method" title="#page (instance method)">- (Fixnum) <strong>page</strong>(lines = @lines) </a>
     
 
     
@@ -315,33 +306,7 @@ lines to display by default.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Moves the position <code>lines</code> number of lines in the source text.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#page-instance_method" title="#page (instance method)">- (FixNum) <strong>page</strong>(lines = @lines) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Paginates the <code>@text</code> input by displaying only the given number
-of lines at a time.</p>
+    <span class="summary_desc"><div class='inline'><p>Paginates the <code>@text</code> input by displaying only the given number of lines at a time.</p>
 </div></span>
   
 </li>
@@ -364,8 +329,7 @@ of lines at a time.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Prompts for user input for the pager and executes given commands.</p>
+    <span class="summary_desc"><div class='inline'><p>Prompts for user input for the pager and executes given commands.</p>
 </div></span>
   
 </li>
@@ -388,8 +352,7 @@ of lines at a time.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Resets the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span> instance to its default initialization state.</p>
+    <span class="summary_desc"><div class='inline'><p>Resets the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span> instance to its default initialization state.</p>
 </div></span>
   
 </li>
@@ -414,8 +377,7 @@ of lines at a time.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Provides a descriptive string representing the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span> instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Provides a descriptive string representing the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span> instance.</p>
 </div></span>
   
 </li>
@@ -430,7 +392,7 @@ of lines at a time.</p>
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span></tt>) <strong>initialize</strong>(string = &#39;&#39;, lines = self.class.lines) 
+    - (<tt><span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">Pager</a></span></tt>) <strong>initialize</strong>(string = '', lines = self.class.lines) 
   
 
   
@@ -438,10 +400,9 @@ of lines at a time.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Initialize a new Pager instance with the given textual input and number of
-lines to display by default. Textual input is converted into an array
-separated by the Windows EOL separator.</p>
+    <p>Initialize a new Pager instance with the given textual input and number
+of lines to display by default. Textual input is converted into an
+array separated by the Windows EOL separator.</p>
 
 
   </div>
@@ -458,12 +419,11 @@ separated by the Windows EOL separator.</p>
         <span class='type'>(<tt>String</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>&#39;&#39;</tt>)</em>
+        <em class="default">(defaults to: <tt>''</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>the text to paginate</p>
+        <div class='inline'><p>the text to paginate</p>
 </div>
       
     </li>
@@ -473,15 +433,14 @@ separated by the Windows EOL separator.</p>
         <span class='name'>lines</span>
       
       
-        <span class='type'>(<tt>FixNum</tt>)</span>
+        <span class='type'>(<tt>Fixnum</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>self.class.lines</tt>)</em>
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of lines per page</p>
+        <div class='inline'><p>the number of lines per page</p>
 </div>
       
     </li>
@@ -495,17 +454,17 @@ separated by the Windows EOL separator.</p>
       <pre class="lines">
 
 
-177
-178
-179
-180
-181
-182</pre>
+194
+195
+196
+197
+198
+199</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 194</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_lines'>lines</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id identifier rubyid_lines'>lines</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span>
   <span class='ivar'>@lines</span>    <span class='op'>=</span> <span class='id identifier rubyid_lines'>lines</span>
   <span class='ivar'>@position</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='ivar'>@previous</span> <span class='op'>=</span> <span class='ivar'>@position</span>
@@ -526,7 +485,7 @@ separated by the Windows EOL separator.</p>
       <div class="method_details first">
   <h3 class="signature first" id="lines-class_method">
   
-    + (<tt>FixNum</tt>) <strong>lines</strong> 
+    + (<tt>Fixnum</tt>) <strong>lines</strong> 
   
 
   
@@ -534,8 +493,7 @@ separated by the Windows EOL separator.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>The number of lines per page for the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span>.</p>
+    <p>Returns the number of lines per page for the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span></p>
 
 
   </div>
@@ -548,9 +506,13 @@ separated by the Windows EOL separator.</p>
     <li>
       
       
-        <span class='type'>(<tt>FixNum</tt>)</span>
+        <span class='type'>(<tt>Fixnum</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>the number of lines per page for the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span></p>
+</div>
       
     </li>
   
@@ -562,12 +524,12 @@ separated by the Windows EOL separator.</p>
       <pre class="lines">
 
 
-151
-152
-153</pre>
+171
+172
+173</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lines'>lines</span>
   <span class='ivar'>@lines</span>
@@ -587,7 +549,7 @@ separated by the Windows EOL separator.</p>
       <div class="method_details first">
   <h3 class="signature first" id="lines-instance_method">
   
-    - (<tt>FixNum</tt>) <strong>lines</strong> 
+    - (<tt>Fixnum</tt>) <strong>lines</strong> 
   
 
   
@@ -595,8 +557,7 @@ separated by the Windows EOL separator.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>The number of lines per page.</p>
+    <p>Returns the number of lines per page</p>
 
 
   </div>
@@ -609,9 +570,13 @@ separated by the Windows EOL separator.</p>
     <li>
       
       
-        <span class='type'>(<tt>FixNum</tt>)</span>
+        <span class='type'>(<tt>Fixnum</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>the number of lines per page</p>
+</div>
       
     </li>
   
@@ -623,12 +588,12 @@ separated by the Windows EOL separator.</p>
       <pre class="lines">
 
 
-160
-161
-162</pre>
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lines'>lines</span>
   <span class='ivar'>@lines</span>
@@ -643,7 +608,7 @@ separated by the Windows EOL separator.</p>
       <div class="method_details ">
   <h3 class="signature " id="position-instance_method">
   
-    - (<tt>FixNum</tt>) <strong>position</strong> 
+    - (<tt>Fixnum</tt>) <strong>position</strong> 
   
 
   
@@ -651,8 +616,7 @@ separated by the Windows EOL separator.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>The <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span>&#39;s position in its stored text.</p>
+    <p>Returns the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span>&#39;s position in its stored text</p>
 
 
   </div>
@@ -665,9 +629,13 @@ separated by the Windows EOL separator.</p>
     <li>
       
       
-        <span class='type'>(<tt>FixNum</tt>)</span>
+        <span class='type'>(<tt>Fixnum</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span>&#39;s position in its stored text</p>
+</div>
       
     </li>
   
@@ -679,12 +647,12 @@ separated by the Windows EOL separator.</p>
       <pre class="lines">
 
 
-164
-165
-166</pre>
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
   <span class='ivar'>@position</span>
@@ -707,8 +675,7 @@ separated by the Windows EOL separator.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>The stored text being paginated.</p>
+    <p>Returns the stored text being paginated</p>
 
 
   </div>
@@ -725,6 +692,10 @@ separated by the Windows EOL separator.</p>
       
       
       
+        &mdash;
+        <div class='inline'><p>the stored text being paginated</p>
+</div>
+      
     </li>
   
 </ul>
@@ -735,12 +706,12 @@ separated by the Windows EOL separator.</p>
       <pre class="lines">
 
 
-168
-169
-170</pre>
+185
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_text'>text</span>
   <span class='ivar'>@text</span>
@@ -760,7 +731,7 @@ separated by the Windows EOL separator.</p>
       <div class="method_details first">
   <h3 class="signature first" id="display_lines-instance_method">
   
-    - (<tt>FixNum</tt>) <strong>display_lines</strong>(lines) 
+    - (<tt>Fixnum</tt>) <strong>display_lines</strong>(lines) 
   
 
   
@@ -768,10 +739,9 @@ separated by the Windows EOL separator.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Displays the lines from <code>@position</code> to the given number of
-lines. Lines may be positive or negative – a positive integer displays
-lines below the current position, negative displays lines above it.</p>
+    <p>Displays the lines from <code>@position</code> to the given number of lines. Lines
+may be positive or negative -- a positive integer displays lines below
+the current position, negative displays lines above it.</p>
 
 
   </div>
@@ -785,13 +755,12 @@ lines below the current position, negative displays lines above it.</p>
         <span class='name'>lines</span>
       
       
-        <span class='type'>(<tt>FixNum</tt>)</span>
+        <span class='type'>(<tt>Fixnum</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of lines to display</p>
+        <div class='inline'><p>the number of lines to display</p>
 </div>
       
     </li>
@@ -804,13 +773,99 @@ lines below the current position, negative displays lines above it.</p>
     <li>
       
       
-        <span class='type'>(<tt>FixNum</tt>)</span>
+        <span class='type'>(<tt>Fixnum</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'>
-<p>the new position in the paginated text</p>
+        <div class='inline'><p>the new position in the paginated text</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+232
+233
+234
+235
+236
+237
+238</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 232</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_display_lines'>display_lines</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='lparen'>(</span><span class='ivar'>@position</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@position</span> <span class='op'>&gt;=</span> <span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='ivar'>@position</span> <span class='op'>&lt;</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
+    <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_between?'>between?</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='ivar'>@position</span><span class='comma'>,</span> <span class='ivar'>@position</span> <span class='op'>+</span> <span class='id identifier rubyid_lines'>lines</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_line'>line</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="page-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>page</strong>(lines = @lines) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Paginates the <code>@text</code> input by displaying only the given number of
+lines at a time. User input is required between pages.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>lines</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>@lines</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>the number of lines per page</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the number of lines paginated</p>
 </div>
       
     </li>
@@ -829,188 +884,19 @@ lines below the current position, negative displays lines above it.</p>
 218
 219
 220
-221</pre>
+221
+222
+223
+224</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 215</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_display_lines'>display_lines</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='lparen'>(</span><span class='ivar'>@position</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@position</span> <span class='op'>&gt;=</span> <span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='ivar'>@position</span> <span class='op'>&lt;</span> <span class='int'>0</span><span class='rparen'>)</span>
-  <span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
-    <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_between?'>between?</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='ivar'>@position</span><span class='comma'>,</span> <span class='ivar'>@position</span> <span class='op'>+</span> <span class='id identifier rubyid_lines'>lines</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_line'>line</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="move_position-instance_method">
-  
-    - (<tt>FixNum</tt>) <strong>move_position</strong>(lines) 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Moves the position <code>lines</code> number of lines in the source text.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>lines</span>
-      
-      
-        <span class='type'>(<tt>FixNum</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the number of lines to move</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>FixNum</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the new position in the text</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-227
-228
-229</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 227</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_move_position'>move_position</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span>
-  <span class='ivar'>@position</span> <span class='op'>+=</span> <span class='id identifier rubyid_lines'>lines</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="page-instance_method">
-  
-    - (<tt>FixNum</tt>) <strong>page</strong>(lines = @lines) 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Paginates the <code>@text</code> input by displaying only the given number
-of lines at a time. User input is required between pages.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>lines</span>
-      
-      
-        <span class='type'>(<tt>FixNum</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>@lines</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the number of lines per page</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>FixNum</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>the number of lines paginated</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_page'>page</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span> <span class='op'>=</span> <span class='ivar'>@lines</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_catch'>catch</span> <span class='symbol'>:quit</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:quit</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@position</span> <span class='op'>&gt;=</span> <span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>||</span> <span class='ivar'>@position</span> <span class='op'>&lt;</span> <span class='int'>0</span><span class='rparen'>)</span>
     <span class='ivar'>@previous</span> <span class='op'>=</span> <span class='ivar'>@position</span>
-    <span class='id identifier rubyid_move_position'>move_position</span><span class='lparen'>(</span><span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span>
+    <span class='ivar'>@position</span> <span class='op'>+=</span> <span class='id identifier rubyid_lines'>lines</span>
     <span class='id identifier rubyid_display_lines'>display_lines</span><span class='lparen'>(</span><span class='ivar'>@lines</span><span class='rparen'>)</span>
     <span class='lparen'>(</span><span class='ivar'>@previous</span> <span class='op'>&lt;</span> <span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_lines'>lines</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_instance_exec'>instance_exec</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_prompt'>prompt</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='kw'>break</span>
   <span class='kw'>end</span>
@@ -1035,12 +921,10 @@ of lines at a time. User input is required between pages.</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>The returned Proc object is run through <code>instance_exec</code> in the
+    <div class='inline'><p>The returned Proc object is run through <code>instance_exec</code> in the
 <span class='object_link'><a href="#page-instance_method" title="SES::Lexicon::Pager#page (method)">#page</a></span> method.</p>
 </div>
   </div>
-
 
 <p>Prompts for user input for the pager and executes given commands.</p>
 
@@ -1063,8 +947,7 @@ of lines at a time. User input is required between pages.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>the input to process</p>
+        <div class='inline'><p>the input to process</p>
 </div>
       
     </li>
@@ -1082,8 +965,8 @@ of lines at a time. User input is required between pages.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>representation of the code to call based on the given input</p>
+        <div class='inline'><p>representation of the code to call based on the given
+input</p>
 </div>
       
     </li>
@@ -1096,35 +979,35 @@ of lines at a time. User input is required between pages.</p>
       <pre class="lines">
 
 
-239
-240
-241
-242
-243
-244
-245
-246
-247
 248
 249
 250
 251
 252
-253</pre>
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 248</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prompt'>prompt</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_print'>print</span> <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-- MORE -- (&quot;q&quot; to quit) &gt;&gt; </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_retval'>retval</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span> <span class='op'>=</span> <span class='id identifier rubyid_gets'>gets</span><span class='period'>.</span><span class='id identifier rubyid_chomp!'>chomp!</span> <span class='semicolon'>;</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>forward</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_print'>print</span> <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-- MORE -- (&quot;q&quot; to quit) &gt;&gt; </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_retval'>retval</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span> <span class='op'>=</span> <span class='id identifier rubyid_gets'>gets</span><span class='period'>.</span><span class='id identifier rubyid_chomp!'>chomp!</span> <span class='semicolon'>;</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>forward</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:\&gt;|forward|next|down)$</span><span class='regexp_end'>/i</span></span>      <span class='semicolon'>;</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_page'>page</span><span class='lparen'>(</span><span class='ivar'>@lines</span><span class='rparen'>)</span><span class='rbrace'>}</span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:\&lt;|back|prev|previous|up)$</span><span class='regexp_end'>/i</span></span>  <span class='semicolon'>;</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_page'>page</span><span class='lparen'>(</span><span class='op'>-</span><span class='ivar'>@lines</span><span class='rparen'>)</span><span class='rbrace'>}</span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(-?\d{,2})$</span><span class='regexp_end'>/</span></span>                     <span class='semicolon'>;</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_page'>page</span><span class='lparen'>(</span><span class='ivar'>@lines</span> <span class='op'>*</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:q|quit|exit)</span><span class='regexp_end'>/i</span></span>                <span class='semicolon'>;</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:quit</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_retval'>retval</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unknown command: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unknown command: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_prompt'>prompt</span>
   <span class='kw'>else</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_retval'>retval</span>
@@ -1146,8 +1029,7 @@ of lines at a time. User input is required between pages.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Resets the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span> instance to its default initialization state.</p>
+    <p>Resets the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span> instance to its default initialization state.</p>
 
 
   </div>
@@ -1180,8 +1062,7 @@ of lines at a time. User input is required between pages.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>the object that the method was called on</p>
+        <div class='inline'><p>the object that the method was called on</p>
 </div>
       
     </li>
@@ -1207,14 +1088,14 @@ of lines at a time. User input is required between pages.</p>
       <pre class="lines">
 
 
-258
-259
-260
-261
-262</pre>
+267
+268
+269
+270
+271</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 267</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:initialize</span><span class='rparen'>)</span>
@@ -1241,8 +1122,7 @@ of lines at a time. User input is required between pages.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Provides a descriptive string representing the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span> instance.</p>
+    <p>Provides a descriptive string representing the <span class='object_link'><a href="" title="SES::Lexicon::Pager (class)">SES::Lexicon::Pager</a></span> instance.</p>
 
 
   </div>
@@ -1260,8 +1140,7 @@ of lines at a time. User input is required between pages.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>a descriptive representation</p>
+        <div class='inline'><p>a descriptive representation</p>
 </div>
       
     </li>
@@ -1274,15 +1153,15 @@ of lines at a time. User input is required between pages.</p>
       <pre class="lines">
 
 
-267
-268
-269</pre>
+276
+277
+278</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 267</span>
+      <pre class="code"><span class="info file"># File 'lib/lexicon.rb', line 276</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SES Lexicon Pager: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> lines, </span><span class='embexpr_beg'>#{</span><span class='ivar'>@lines</span><span class='embexpr_end'>}</span><span class='tstring_content'> shown</span><span class='tstring_end'>&quot;</span></span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SES Lexicon Pager: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rbrace'>}</span><span class='tstring_content'> lines, </span><span class='embexpr_beg'>#{</span><span class='ivar'>@lines</span><span class='rbrace'>}</span><span class='tstring_content'> shown</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1294,9 +1173,9 @@ of lines at a time. User input is required between pages.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Jul 14 20:14:43 2014 by
+  Generated on Wed Jul  8 22:18:04 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.4 (ruby-2.1.2).
+  0.8.7.6 (ruby-1.9.3).
 </div>
 
   </body>

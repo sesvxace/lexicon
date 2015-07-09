@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
 <title>
   File: README
   
@@ -61,115 +61,119 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'>
-<h1 id="label-Lexicon+v1.2+by+Solistra+and+Enelvon">Lexicon v1.2 by Solistra and Enelvon</h1>
+    <div id="content"><div id='filecontents'><h1>Lexicon v1.3 by Solistra and Enelvon</h1>
 
-<h2 id="label-Summary">Summary</h2>
+<h2>Summary</h2>
 
 <p>This script provides information and browsing capabilities for all of the
-RGSS3 scripts that are present in the RPG Maker VX Ace Script Editor.
-Script source code may be browsed and paginated in-game with the use of a
-REPL (such as the SES Console) or using script calls. This is primarily a
-scripter&#39;s tool.</p>
+RGSS3 scripts that are present in the RPG Maker VX Ace Script Editor. Script
+source code may be browsed and paginated in-game with the use of a REPL (such
+as the SES Console) or using script calls. This is primarily a scripter&#39;s
+tool.</p>
 
-<h2 id="label-Usage">Usage</h2>
+<h2>Usage</h2>
 
-<p>This script is designed to function entirely through a REPL or script calls
-(although the latter is not recommended). As such, all of the available
+<p>This script is designed to function entirely through a REPL or script
+calls (although the latter is not recommended). As such, all of the available
 functionality of this script is available through simple methods.</p>
 
 <p>In order to browse the source code of a script, simply use the provided
-<code>SES::Lexicon.browse</code> method with the file name of the script
-you wish to view. Example:</p>
+<code>SES::Lexicon.browse</code> method with the file name of the script you wish to
+view. Example:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_browse'>browse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Game_Interpreter</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+<pre class="code ruby"><code class="ruby"><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_browse'>browse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Game_Interpreter</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</code></pre>
 
 <p>This method opens the given script in the pager, allowing paginated
-browsing of the script&#39;s source code. Without pagination, it&#39;s very
-likely that a significant portion of the script may be swallowed by the
-console&#39;s buffer (especially when viewing large scripts such as
-<code>Game_Interpreter</code>).</p>
+browsing of the script&#39;s source code. Without pagination, it&#39;s very likely
+that a significant portion of the script may be swallowed by the console&#39;s
+buffer (especially when viewing large scripts such as <code>Game_Interpreter</code>).</p>
 
 <p>If you need to view a specific line or chunk of source code, you can use
-the <code>SES::Lexicon.line</code> method. The usage of this method
-involves providing the script name, line number, and (optionally) the
-number of lines around the requested line number to display as well. For
-example, if we wanted to view the <code>update</code> method of
-<code>Scene_Base</code> and the 5 lines of code both above and below that
-method, we would use the following:</p>
+the <code>SES::Lexicon.line</code> method. The usage of this method involves providing
+the script name, line number, and (optionally) the number of lines around the
+requested line number to display as well. For example, if we wanted to view
+the <code>update</code> method of <code>Scene_Base</code> and the 5 lines of code both above and
+below that method, we would use the following:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Scene_Base</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>40</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span></code></pre>
+<pre class="code ruby"><code class="ruby"><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Scene_Base</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='int'>40</span><span class='comma'>,</span> <span class='int'>5</span><span class='rparen'>)</span>
+</code></pre>
 
 <p>There are also two methods provided for information-gathering purposes:
-<code>SES::Lexicon.named</code> and <code>SES::Lexicon.defining</code>. As
-expected, the <code>named</code> method returns an array of script names
-containing the given string or regular expression, and the
-<code>defining</code> method returns an array of scripts which define or
-redefine the given class or module. Examples:</p>
+<code>SES::Lexicon.named</code> and <code>SES::Lexicon.defining</code>. As expected, the <code>named</code>
+method returns an array of script names containing the given string or
+regular expression, and the <code>defining</code> method returns an array of scripts
+which define or redefine the given class or module. Examples:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_named'>named</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Manager</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>  <span class='comment'># =&gt; [&quot;DataManager&quot;, &quot;SceneManager&quot;,
+<pre class="code ruby"><code class="ruby"><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_named'>named</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Manager</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>  <span class='comment'># =&gt; [&quot;DataManager&quot;, &quot;SceneManager&quot;,
 </span>                               <span class='comment'>#     &quot;BattleManager&quot;]
-</span><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_defining'>defining</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Cache</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; [&quot;Cache&quot;]
+</span><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_defining'>defining</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Cache</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; [&quot;Cache&quot;]
 </span></code></pre>
 
-<p>The <code>defining</code> method can also take partial class or module
-names and will return an array of script names which match the partial
-information given. For example, you can easily view which scripts modify
-any of the Scene_* classes using
-<code>SES::Lexicon.defining(&#39;Scene_&#39;)</code>.</p>
+<p>The <code>defining</code> method can also take partial class or module names and will
+return an array of script names which match the partial information given.
+For example, you can easily view which scripts modify any of the Scene_*
+classes using <code>SES::Lexicon.defining(&#39;Scene_&#39;)</code>.</p>
+
+<p>In addition to this, you can also browse for a specific method definition
+using its signature in standard Ruby notation using <code>SES::Lexicon.find</code>. For
+example, you can jump immediately to the definition of the <code>update</code> instance
+method of <code>Scene_Base</code> or the <code>return</code> class method of <code>SceneManager</code> like
+so:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Scene_Base#update</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>SceneManager.return</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+</code></pre>
 
 <p>The Lexicon also enables direct reading of the script information that it
-stores. This information is provided as a reader method for the
-Lexicon&#39;s <code>@scripts</code> instance variable. The elements of this
-array store information as a hash – each hash includes the
-<code>:name</code> and <code>:code</code> keys which provide the expected
-information when accessed. For example, if you want to simply print the
-contents of <code>Main</code> to the console, you could use the following:</p>
+stores. This information is provided as a reader method for the Lexicon&#39;s
+<code>@scripts</code> instance variable. The elements of this array store information as
+<code>RGSS_Script</code> data structures -- each structure includes both the <code>name</code> and
+<code>code</code> methods which provide the expected information when accessed. For
+example, if you want to simply print the contents of <code>Main</code> to the console,
+you could use the following:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_scripts'>scripts</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:code</span><span class='rbracket'>]</span></code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='const'>SES</span><span class='op'>::</span><span class='const'>Lexicon</span><span class='period'>.</span><span class='id identifier rubyid_scripts'>scripts</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span>
+</code></pre>
 
-<h2 id="label-Using+the+Pager">Using the Pager</h2>
+<h2>Using the Pager</h2>
 
-<p>The Lexicon&#39;s pager paginates large text so that it can be viewed in
-pages which may be navigated with commands. When using the pager, you will
-come across a string at the bottom of the paged output with
-<code>&gt;&gt;</code> at the end of it; this indicates that a command is
-expected.</p>
+<p>The Lexicon&#39;s pager paginates large text so that it can be viewed in pages
+which may be navigated with commands. When using the pager, you will come
+across a string at the bottom of the paged output with <code>&gt;&gt;</code> at the end of it;
+this indicates that a command is expected.</p>
 
 <p>By default, giving no command (by simply pressing Enter) will advance the
-pager to the next page of text; this is exactly the same as giving any of
-the following commands: <code>&gt;</code>, <code>forward</code>,
-<code>next</code>, or <code>down</code>. You may browse the previous page
-of text with <code>&lt;</code>, <code>back</code>, <code>prev</code>,
-<code>previous</code>, or <code>up</code>.</p>
+pager to the next page of text; this is exactly the same as giving any of the
+following commands: <code>&gt;</code>, <code>forward</code>, <code>next</code>, or <code>down</code>. You may browse the
+previous page of text with <code>&lt;</code>, <code>back</code>, <code>prev</code>, <code>previous</code>, or <code>up</code>.</p>
 
 <p>In addition to this, you can browse a specific number of pages forward or
 backward in the paginated text by passing a valid integer as the command.
-Positive integers advance the text forward, negatives show previous pages
-of the text. You may browse between -99 and 99 pages at a time; any number
-above or below these values is not a valid command.</p>
+Positive integers advance the text forward, negatives show previous pages of
+the text. You may browse between -99 and 99 pages at a time; any number above
+or below these values is not a valid command.</p>
 
-<p>In order to exit the pager, simply pass any of the following commands:
-<code>q</code>, <code>quit</code>, or <code>exit</code>. This will cause
-the pager to immediately terminate and return the position of the pager in
-the paginated text.</p>
+<p>In order to exit the pager, simply pass any of the following commands: <code>q</code>,
+<code>quit</code>, or <code>exit</code>. This will cause the pager to immediately terminate and
+return the position of the pager in the paginated text.</p>
 
-<h2 id="label-License">License</h2>
+<h2>License</h2>
 
 <p>This script is made available under the terms of the MIT Expat license.
-View <a href="http://sesvxace.wordpress.com/license/">this page</a> for
-more detailed information.</p>
+View <a href="http://sesvxace.wordpress.com/license/">this page</a> for more detailed
+information.</p>
 
-<h2 id="label-Installation">Installation</h2>
+<h2>Installation</h2>
 
 <p>Place this script below Materials, but above Main. Place this script below
 the SES Core (v2.0) script if you are using it.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Mon Jul 14 20:14:42 2014 by
+  Generated on Wed Jul  8 22:18:04 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.4 (ruby-2.1.2).
+  0.8.7.6 (ruby-1.9.3).
 </div>
 
   </body>

@@ -20,7 +20,11 @@
   </head>
   <body>
     <script type="text/javascript" charset="utf-8">
-      if (window.top.frames.main) {
+      var hasFrames = false;
+      try {
+        hasFrames = window.top.frames.main ? true : false;
+      } catch (e) { }
+      if (hasFrames) {
         document.getElementById('base_target').target = 'main';
         document.body.className = 'frames';
       }
@@ -54,14 +58,26 @@
   
 
   <li class="r2 ">
+    <span class='object_link'><a href="SES/Lexicon/RGSS_Script.html#code-instance_method" title="SES::Lexicon::RGSS_Script#code (method)">#code</a></span>
+    <small>SES::Lexicon::RGSS_Script</small>
+  </li>
+  
+
+  <li class="r1 ">
     <span class='object_link'><a href="SES/Lexicon.html#defining-class_method" title="SES::Lexicon.defining (method)">defining</a></span>
     <small>SES::Lexicon</small>
   </li>
   
 
-  <li class="r1 ">
+  <li class="r2 ">
     <span class='object_link'><a href="SES/Lexicon/Pager.html#display_lines-instance_method" title="SES::Lexicon::Pager#display_lines (method)">#display_lines</a></span>
     <small>SES::Lexicon::Pager</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="SES/Lexicon.html#find-class_method" title="SES::Lexicon.find (method)">find</a></span>
+    <small>SES::Lexicon</small>
   </li>
   
 
@@ -84,8 +100,8 @@
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="SES/Lexicon/Pager.html#move_position-instance_method" title="SES::Lexicon::Pager#move_position (method)">#move_position</a></span>
-    <small>SES::Lexicon::Pager</small>
+    <span class='object_link'><a href="SES/Lexicon/RGSS_Script.html#name-instance_method" title="SES::Lexicon::RGSS_Script#name (method)">#name</a></span>
+    <small>SES::Lexicon::RGSS_Script</small>
   </li>
   
 
